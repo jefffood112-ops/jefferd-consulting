@@ -5,13 +5,13 @@
    ============================================================ */
 
 .hero-split {
-  --hs-bg:     #FEFEFE;
-  --hs-beige:  #F2F1ED; /* 設計圖第三區塊（ABOUT US）米色 */
-  --hs-navy:   #0F1A20;
-  --hs-navy-2: #2C333A;
-  --hs-ink:    #141414;
-  --hs-ink-2:  #555555;
-  --hs-accent: #8B5E4A;
+  --hs-bg:     var(--bg);
+  --hs-beige:  var(--bg-2); /* 設計圖第三區塊（ABOUT US）米色 */
+  --hs-navy:   var(--ink);
+  --hs-navy-2: var(--accent);
+  --hs-ink:    var(--ink);
+  --hs-ink-2:  var(--ink-2);
+  --hs-accent: var(--accent);
   --hs-frame:  24px;    /* 左右米色邊寬度 */
   --hs-gap:    clamp(28px, 3vw, 48px); /* 上下米色留白 */
   --hs-share:  .7;      /* 照片佔白框寬度比例 */
@@ -53,8 +53,8 @@
 
 .hero-split .btn { border-color: var(--hs-navy); color: var(--hs-navy); }
 .hero-split .btn:hover,
-.hero-split .btn:focus-visible { background: var(--hs-navy); color: #FFFFFF; }
-.hero-split .btn.solid { background: var(--hs-navy); color: #FFFFFF; }
+.hero-split .btn:focus-visible { background: var(--hs-navy); color: var(--inverse); }
+.hero-split .btn.solid { background: var(--hs-navy); color: var(--inverse); }
 .hero-split .btn.solid:hover,
 .hero-split .btn.solid:focus-visible { background: var(--hs-navy-2); border-color: var(--hs-navy-2); }
 
