@@ -1,7 +1,7 @@
 /* Homepage only. Uses the existing palette and font resources from muse.css. */
 .home-page {
-  --home-paper: var(--inverse);
-  --home-panel: color-mix(in srgb, var(--inverse) 82%, var(--line));
+  --home-paper: var(--bg);
+  --home-panel: var(--bg-2);
   --home-gutter: clamp(20px, 4.5vw, 72px);
   --home-width: 1360px;
   --home-space: clamp(64px, 7vw, 112px);
@@ -49,7 +49,7 @@
   font-size: 14px;
   transition: color .2s, background-color .2s, border-color .2s;
 }
-.home-page .btn:hover { background: var(--ink); color: var(--inverse); }
+.home-page .btn:hover { background: var(--accent); color: var(--inverse); border-color: var(--accent); }
 .home-page .btn.solid { background: var(--ink); color: var(--inverse); border-color: var(--ink); }
 .home-page .btn.solid:hover { background: var(--accent-2); border-color: var(--accent-2); }
 .home-page .eyebrow {
@@ -100,9 +100,9 @@
 .home-page .hero-split .eyebrow { font-style: normal; font-family: 'Noto Sans TC', sans-serif; font-size: 13px; letter-spacing: .04em; text-wrap: balance; }
 .home-page .hero-split p.lead { margin-top: 26px; font-size: 15px; color: var(--ink-2); }
 .home-page .hero-cta { margin-top: 32px; gap: 12px; }
-.home-page .hero-split .btn { color: var(--ink); border-color: var(--ink); }
-.home-page .hero-split .btn:hover { color: var(--inverse); background: var(--ink); }
-.home-page .hero-split .btn.solid { color: var(--inverse); background: var(--ink); }
+.home-page .hero-split .btn { color: var(--ink); border-color: var(--color-button-border); }
+.home-page .hero-split .btn:hover { color: var(--inverse); background: var(--accent); border-color: var(--accent); }
+.home-page .hero-split .btn.solid { color: var(--inverse); background: var(--ink); border-color: var(--ink); }
 .home-page .hs-media { grid-column: span 7; aspect-ratio: 1533 / 1089; background: var(--home-panel); }
 .home-page .hs-media img { position: static; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 
@@ -126,7 +126,7 @@
 .home-page .service-card .sc-task { font-size: 15px; line-height: 1.95; margin-top: 18px; }
 .home-page .service-card ul { margin-top: 24px; }
 .home-page .service-card li { font-size: 14px; padding-block: 9px; }
-.home-page .service-card .sc-link { align-self: flex-start; min-height: 44px; margin-top: 24px; border-bottom: 1px solid var(--ink); font-size: 14px; }
+.home-page .service-card .sc-link { align-self: flex-start; min-height: 44px; margin-top: 24px; border-bottom: 1px solid var(--line); font-size: 14px; }
 .home-page .service-card .sc-link:hover { border-color: var(--accent); }
 
 /* Editorial case grid: photography and typography, with restrained rules. */
@@ -145,7 +145,7 @@
 .home-page .case-card .cc-name { font-family: 'Noto Serif TC',serif; font-size: 26px; font-weight: 500; margin-top: 12px; }
 .home-page .case-card .cc-problem { font-size: 15px; line-height: 1.9; flex: 1; }
 .home-page .case-card .cc-roles { margin-top: 20px; }
-.home-page .tag { border-radius: 0; background: transparent; font-size: 12px; padding: 3px 9px; }
+.home-page .tag { border-radius: 0; background: var(--bg-2); font-size: 12px; padding: 3px 9px; }
 .home-page .case-card .cc-arrow { font-size: 14px; margin-top: 24px; }
 .home-page .home-cases .home-case-more { margin-top: 40px; text-align: right; }
 
@@ -283,4 +283,26 @@
   .home-page .case-card:hover .cc-img img { transform: none; }
 }
 
-.home-page .btn.on-dark:hover { background: var(--inverse); color: var(--ink); }
+.home-page .btn.on-dark:hover { background: var(--accent); color: var(--inverse); border-color: var(--accent); }
+
+/* Homepage chapter colors use the same global palette as every other page. */
+.home-page .home-problems,
+.home-page .home-cases,
+.home-page .home-jeff.section { background-color: var(--bg-2); }
+.home-page .home-services.section,
+.home-page .home-brands,
+.home-page .home-process { background-color: var(--bg); }
+.home-page .nav-logo span { color: var(--ink); }
+.home-page .hero-split .btn:is(:hover, :focus-visible) {
+  background-color: var(--accent); color: var(--inverse); border-color: var(--accent);
+}
+.home-page #footer { background-color: var(--bg-inverse); }
+.home-page #footer .ft-brand .serif,
+.home-page #footer .ft-col h4 { color: var(--inverse); }
+.home-page #footer .ft-brand p,
+.home-page #footer .ft-col a,
+.home-page :is(.ft-legal, .ft-copy) { color: var(--inverse-2); }
+.home-page #footer .ft-brand .serif { color: var(--inverse); }
+.home-page #footer .ft-col a:hover { color: var(--accent); }
+
+.home-page .case-card:hover { border-color: var(--color-border-hover); }

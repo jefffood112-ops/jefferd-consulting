@@ -7,26 +7,37 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* 白色主畫布（依 APEX_REVISION_PLAN_PHASE4.md 核准 Token） */
-  --bg:         #FFFFFF;
-  --bg-2:       #F4F4F1;
-  --bg-inverse: #191917;
-  --bg-inverse-2:#24231F;
+  /* Shared brand palette. Legacy names below remain aliases for every page. */
+  --color-bg-primary: #F8F9F6;
+  --color-bg-secondary: #F4F3F0;
+  --color-accent: #806154;
+  --color-dark: #1A2124;
+  --color-text-primary: #1A2124;
+  --color-text-secondary: #5F605D;
+  --color-text-light: #F8F9F6;
+  --color-divider: rgba(128, 97, 84, 0.16);
+  --color-border-hover: rgba(128, 97, 84, 0.45);
+  --color-dark-secondary: rgba(248, 249, 246, 0.68);
+  --color-button-border: rgba(128, 97, 84, 0.28);
+  --color-dark-button-border: rgba(248, 249, 246, 0.45);
+  --color-dark-list: rgba(248, 249, 246, 0.72);
+  --color-accent-muted: rgba(128, 97, 84, 0.68);
+  --color-card: #FFFFFF;
+  --color-card-border: rgba(128, 97, 84, 0.15);
 
-  /* 文字 */
-  --ink:        #171715;
-  --ink-2:      #50504C;
-  --ink-3:      #767570;
-  --inverse:    #F4F2ED;
-  --inverse-2:  #C8C5BD;
-
-  /* 分隔線 */
-  --line:       #E2E1DC;
-  --line-inverse: rgba(244,242,237,.16);
-
-  /* 低飽和暖色點綴（火候／木質） */
-  --accent:     #8A654C;
-  --accent-2:   #6F503C;
+  --bg: var(--color-bg-primary);
+  --bg-2: var(--color-bg-secondary);
+  --bg-inverse: var(--color-dark);
+  --bg-inverse-2: var(--color-dark);
+  --ink: var(--color-text-primary);
+  --ink-2: var(--color-text-secondary);
+  --ink-3: var(--color-text-secondary);
+  --inverse: var(--color-text-light);
+  --inverse-2: var(--color-dark-secondary);
+  --line: var(--color-divider);
+  --line-inverse: var(--color-divider);
+  --accent: var(--color-accent);
+  --accent-2: var(--color-accent);
 
   /* 語意色 */
   --ok:         #4c6b4a;
@@ -75,7 +86,7 @@ section { position: relative; }
   color: var(--accent-2);
   margin-bottom: 16px;
 }
-.eyebrow.on-dark { color: #d7a077; }
+.eyebrow.on-dark { color: var(--accent); }
 
 .rule { border: none; border-top: 1px solid var(--line); }
 .rule.on-dark { border-top-color: var(--line-inverse); }
@@ -115,7 +126,7 @@ p.lead { color: var(--ink-2); font-size: 16.5px; line-height: 1.9; max-width: va
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(255,255,255,.94);
+  background: var(--bg);
   backdrop-filter: blur(10px);
 }
 .nav-logo { display: flex; align-items: baseline; gap: 8px; text-decoration: none; }
@@ -591,3 +602,48 @@ body.nav-open { overflow: hidden; }
   color: var(--accent);
   font-size: 15px;
 }
+
+/* Brand color roles only: no layout, typography, image or dimension changes. */
+body.muse { color: var(--ink-2); }
+h4, .decision-item .di-title { color: var(--ink); }
+.nav-logo span, nav ul a, #mob-menu a { color: var(--ink); }
+nav ul a:hover, #mob-menu a:hover { color: var(--accent); }
+nav ul a.active { color: var(--ink); }
+.btn, .btn.ghost { background-color: transparent; color: var(--ink); border-color: var(--color-button-border); }
+.btn.solid { background-color: var(--bg-inverse); color: var(--inverse); border-color: var(--bg-inverse); }
+.btn.on-dark { background-color: transparent; color: var(--inverse); border-color: var(--color-dark-button-border); }
+.btn:hover, .btn.solid:hover, .btn.ghost:hover, .btn.on-dark:hover {
+  background-color: var(--accent); color: var(--inverse); border-color: var(--accent);
+}
+.tag, .tag.on-dark { background-color: var(--bg-2); color: var(--ink-2); border-color: var(--line); }
+a.tag:hover, button.tag:hover, .tag[role="button"]:hover {
+  background-color: var(--accent); color: var(--inverse); border-color: var(--accent);
+}
+.section, .page-hero, .case-hero, .case-block, .brand-detail { background-color: var(--bg); }
+.cb-label, .scope-step .ss-phase, .case-hero .ch-meta { color: var(--accent); }
+.service-card li::before, .exclude-list li::before { color: var(--accent); }
+.case-card:hover { border-color: var(--color-border-hover); }
+.case-card:hover .cc-arrow { color: var(--accent); }
+
+/* Page roles are identified by existing shared structure; HTML stays untouched. */
+body:has(> #strategy) > .section { background-color: var(--bg-2); }
+#brand.case-block { background-color: var(--bg-2); }
+:is(#strategy, #brand, #culinary) .cb-body b { color: var(--accent); }
+body:has(.case-grid.two) > .page-hero,
+body:has(> .brand-detail) > .page-hero { background-color: var(--bg-2); }
+.case-grid.two .case-card { background-color: var(--color-card); border-color: var(--color-card-border); }
+.case-grid.two .case-card:hover { border-color: var(--color-border-hover); }
+
+/* All 13 case detail pages share these rules, independent of case name. */
+.case-summary-grid .cs-item { background-color: var(--bg-2); }
+.case-hero ~ .case-block:nth-child(even of .case-block) { background-color: var(--bg-2); }
+.case-block:has(.exclude-list) { background-color: var(--bg-inverse); }
+.case-block:has(.exclude-list) h2 { color: var(--inverse); }
+.exclude-list li { color: var(--color-dark-list); }
+.case-next-link:hover { color: var(--accent); }
+
+.brand-detail:nth-child(odd of .brand-detail) { background-color: var(--bg-2); }
+.bd-text .bd-en { color: var(--color-accent-muted); }
+#footer { background-color: var(--bg-2); }
+#footer .ft-brand .serif, #footer .ft-col h4 { color: var(--ink); }
+#footer .ft-col a:hover { color: var(--accent); }
