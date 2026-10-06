@@ -49,19 +49,19 @@
 <section class="section reveal">
   <div class="wrap-narrow">
 
-    <form id="intake-form" class="intake-form" novalidate>
+    <div class="intake-form">
       <div class="form-grid">
         <div class="form-field">
           <label for="f-name">姓名／稱呼 <span aria-hidden="true">*</span></label>
-          <input type="text" id="f-name" name="name" required autocomplete="name" placeholder="你的姓名或稱呼">
+          <input disabled type="text" id="f-name" name="name" required autocomplete="name" placeholder="你的姓名或稱呼">
         </div>
         <div class="form-field">
           <label for="f-brand">品牌或組織 <span aria-hidden="true">*</span></label>
-          <input type="text" id="f-brand" name="brand" required autocomplete="organization" placeholder="品牌／店名／公司名稱">
+          <input disabled type="text" id="f-brand" name="brand" required autocomplete="organization" placeholder="品牌／店名／公司名稱">
         </div>
         <div class="form-field">
           <label for="f-stage">目前階段 <span aria-hidden="true">*</span></label>
-          <select id="f-stage" name="stage" required>
+          <select disabled id="f-stage" name="stage" required>
             <option value="" disabled selected>請選擇</option>
             <option>籌備開店</option>
             <option>已營運，考慮轉型</option>
@@ -71,30 +71,29 @@
         </div>
         <div class="form-field">
           <label for="f-timeline">預計時間</label>
-          <input type="text" id="f-timeline" name="timeline" placeholder="例如：三個月內想開始">
+          <input disabled type="text" id="f-timeline" name="timeline" placeholder="例如：三個月內想開始">
         </div>
         <div class="form-field full">
           <label for="f-question">想討論的主要問題 <span aria-hidden="true">*</span></label>
-          <textarea id="f-question" name="question" required placeholder="簡單描述你現在卡住的地方，不需要完整企劃"></textarea>
+          <textarea disabled id="f-question" name="question" required placeholder="簡單描述你現在卡住的地方，不需要完整企劃"></textarea>
         </div>
         <div class="form-field full">
           <label for="f-contact">聯絡方式 <span aria-hidden="true">*</span></label>
-          <input type="text" id="f-contact" name="contact" required placeholder="電話、Email 或 LINE，方便我們回覆的方式">
+          <input disabled type="text" id="f-contact" name="contact" required placeholder="電話、Email 或 LINE，方便我們回覆的方式">
         </div>
       </div>
 
       <div class="form-field" style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
         <label for="f-website">網站</label>
-        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+        <input disabled type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="btn solid" id="submit-btn">送出顧問初談需求</button>
-        <p class="form-note">你提供的資料僅用於此次顧問需求評估與聯絡。</p>
+        <a href="https://line.me/R/oaMessage/%40480glfwi/?%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E8%A9%A2%E5%95%8F%E5%93%81%E7%89%8C%E9%A1%A7%E5%95%8F%E6%9C%8D%E5%8B%99%E3%80%82" class="btn solid" id="submit-btn">送出顧問初談需求</a>
+        <p class="form-note">表單已停用，請點擊按鈕前往 LINE 聊天室，於 LINE 傳送你的顧問需求。</p>
       </div>
 
-      <div id="form-status" class="form-status" role="status"></div>
-    </form>
+    </div>
 
     <div class="expect-list">
       <p class="eyebrow">送出之後</p>
@@ -145,68 +144,5 @@
 </footer>
 
 <script src="assets/site.js"></script>
-<script>
-(function () {
-  const form = document.getElementById('intake-form');
-  const btn = document.getElementById('submit-btn');
-  const status = document.getElementById('form-status');
-  let submitting = false;
-
-  function setStatus(text, kind) {
-    status.textContent = text;
-    status.classList.remove('success', 'error');
-    if (kind) status.classList.add('show', kind);
-    else status.classList.remove('show');
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (submitting) return;
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const data = {
-      name: form.name.value.trim(),
-      brand: form.brand.value.trim(),
-      stage: form.stage.value,
-      timeline: form.timeline.value.trim(),
-      question: form.question.value.trim(),
-      contact: form.contact.value.trim(),
-      website: form.website.value,
-      page: location.pathname
-    };
-
-    submitting = true;
-    btn.disabled = true;
-    btn.textContent = '正在送出…';
-    setStatus('', null);
-
-    fetch('/api/inquiry', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('request failed');
-        return res.json();
-      })
-      .then(function () {
-        setStatus('資料已送出。我們會先進行初步評估；符合合作條件的案件，將另行聯繫並安排線上初談。', 'success');
-        form.reset();
-      })
-      .catch(function () {
-        setStatus('目前無法送出，請稍後再試，或直接透過 Facebook 私訊聯絡我們：facebook.com/ChefJ.Food', 'error');
-      })
-      .finally(function () {
-        submitting = false;
-        btn.disabled = false;
-        btn.textContent = '送出顧問初談需求';
-      });
-  });
-})();
-</script>
 </body>
 </html>
