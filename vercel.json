@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/jfood.html", "destination": "/brands.html#jfood", "permanent": false }
   ]
 }
