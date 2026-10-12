@@ -493,6 +493,8 @@ body.nav-open { overflow: hidden; }
 .case-hero h1 { font-size: clamp(28px, 4vw, 44px); max-width: 840px; }
 .case-hero .ch-summary { margin-top: 18px; max-width: var(--reading); color: var(--ink-2); font-size: 16px; line-height: 1.9; }
 .case-hero .ch-meta { margin-top: 24px; display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--ink-3); }
+.case-hero .ch-meta a { color: inherit; text-decoration: none; }
+.case-hero .ch-meta a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .case-hero-img { position: relative; height: 0; margin-top: 40px; padding-bottom: 56.25%; overflow: hidden; background: var(--bg-2); }
 .case-hero-img img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 700px) { .case-hero-img { padding-bottom: 75%; } }
